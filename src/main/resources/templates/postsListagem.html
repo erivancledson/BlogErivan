@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Blog Erivan</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="style/styleCss.css"/>-->
+
+	<meta charset="utf-8"></meta>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1" style="font-weight: bold;">Blog Erivan</span>
+            <a href="/newpost" class="btn btn-primary" role="button">Novo Post</a>
+            <a href="/logout" class="btn btn-link" role="button">Sair</a>
+        </nav>
+    </header>
+
+    <section>
+    <div class="container"  style="width: 60%; padding-bottom: 30px;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
+                <li class="breadcrumb-item active" aria-current="page">Posts</li>
+            </ol>
+        </nav>
+        
+      	<table class="table table-striped">
+
+			<thead>
+				<tr>
+					<th>Título</th>
+					<th>Autor</th>
+					<th>Data</th>
+					
+					<th>Opções</th>
+				<tr>
+			</thead>
+			<tbody>
+				<tr th:each="post : ${posts}">
+					
+					<td><span th:text="${post.titulo}"></span></td>
+					<td><span th:text="${post.autor}"></span></td>
+					<td><span th:text="${{post.data}}"></span></td>
+					<td><a type="button" class="btn btn-danger"
+						th:href="${(#mvc.url('PC#deletarPost').arg(0, post.id)).build()}">Deletar</a>
+					</td>
+					
+				</tr>
+			</tbody>
+
+		</table>
+		
+    </div>
+    </section>
+
+</body>
+</html>
